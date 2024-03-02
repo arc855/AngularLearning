@@ -18,5 +18,19 @@ export class TodoComponent {
     }
   }
 
+  updateTask(index:any){
+    if(this.newTask == ''){
+
+    }
+    this.AllTasks[index]=this.newTask;
+
+  }
+
+  deleteTask(index:any){
+    this.AllTasks.splice(index,1)
+
+  }
+  
+
 
 }
