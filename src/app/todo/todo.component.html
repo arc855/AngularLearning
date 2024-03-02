@@ -1,0 +1,12 @@
+<div>
+    <h4>My Todo List </h4>
+    <button (click)="addTask()">Add task </button>
+    <input id="task" [(ngModel)]="newTask">
+
+    <ul *ngFor="let task of AllTasks">
+        <li>{{task}}</li>
+    </ul>
+
+
+
+</div>
