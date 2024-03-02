@@ -20,7 +20,6 @@ export class TodoComponent {
 
   updateTask(index:any){
     if(this.newTask == ''){
-
     }
     this.AllTasks[index]=this.newTask;
 
