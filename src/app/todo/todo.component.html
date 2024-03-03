@@ -1,8 +1,24 @@
-<input placeholder="Enter task here" type="text" [(ngModel)]="task" required> 
-<button (click)="addNewTask()">Add task</button>
 
-<div *ngFor="let task of todos">
-<div>{{task.task}}</div>
-<button (click)="deleteTask(task.id)">Delete</button>
-<button (click)="updateTask(task)">Update</button>
+<header>
+    <h1 class="text-2xl font-bold ">To DO List Project</h1>
+
+</header>
+
+
+
+<div>
+    <input placeholder="Enter task here" type="text" [(ngModel)]="task" required > 
+    <button (click)="addNewTask()">Add task</button>
 </div>
+
+
+<div >
+
+    <div *ngFor="let task of todos">
+        <div>{{task.task}}</div>
+        <button (click)="deleteTask(task.id)">Delete</button>
+        <button (click)="updateTask(task)">Update</button>
+    </div>
+
+</div>
+

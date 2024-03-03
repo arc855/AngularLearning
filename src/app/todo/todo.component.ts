@@ -28,6 +28,7 @@ export class TodoComponent implements OnInit{
  }
 
  addNewTask(){
+  console.log("inisde add new task")
   let newtask={
     task:this.task
   }
