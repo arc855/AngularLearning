@@ -28,25 +28,31 @@ export class TodoComponent implements OnInit{
  }
 
  addNewTask(){
-  console.log("inisde add new task")
-  let newtask={
-    task:this.task
+  if(this.task==null || this.task == ''){
+  }else{
+    let newtask={
+      task:this.task
+    }
+    this.todoService.createTask(newtask).subscribe(response => {
+      console.log("response :", response)
+      this.getTaskList();
+    })
   }
-  this.todoService.createTask(newtask).subscribe(response => {
-    this.getTaskList();
-  })
+
+
  }
 
  updateTask(task:Task){
-  let edittask={
-    id:task.id,
-    task:this.task
+  if(this.task==null || this.task == ''){
+  }else{
+    let edittask={
+      id:task.id,
+      task:this.task
+    }
+    this.todoService.updateTask(edittask).subscribe(res => {
+      this.getTaskList()
+    })
   }
-  this.todoService.updateTask(edittask).subscribe(res => {
-    this.getTaskList()
-
-  })
-  
  }
 
  deleteTask(id:Task['id']){
