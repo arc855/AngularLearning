@@ -1,35 +1,60 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import {TodoService} from'../todo.service';
+import { Task } from '../task';
+
 
 @Component({
   selector: 'app-todo',
   templateUrl: './todo.component.html',
   styleUrls: ['./todo.component.css']
 })
-export class TodoComponent {
-  public newTask :any;
-  AllTasks:any=[]
-  addTask(){
-    if(this.newTask == null){
-    }
-    else{
-      this.AllTasks.push(this.newTask)
+export class TodoComponent implements OnInit{
+ task='';
+ todos: Task[] = [];
 
-    }
+ constructor(private todoService : TodoService){
+
+ }
+
+ ngOnInit(): void {
+   this.getTaskList();
+ }
+
+ getTaskList(){
+  this.todoService.geAllTasks().subscribe(response => {
+    this.todos = response;
+  })
+ }
+
+ addNewTask(){
+  let newtask={
+    task:this.task
   }
+  this.todoService.createTask(newtask).subscribe(response => {
+    this.getTaskList();
+  })
+ }
 
-  updateTask(index:any){
-    if(this.newTask == ''){
-    }
-    this.AllTasks[index]=this.newTask;
-
+ updateTask(task:Task){
+  let edittask={
+    id:task.id,
+    task:this.task
   }
+  this.todoService.updateTask(edittask).subscribe(res => {
+    this.getTaskList()
 
-  deleteTask(index:any){
-    this.AllTasks.splice(index,1)
-
-  }
+  })
   
+ }
+
+ deleteTask(id:Task['id']){
+  this.todoService.deleteTasks(id).subscribe(res => {
+    this.getTaskList();
+  })
+    
+ }
+
 
 
 }

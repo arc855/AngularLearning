@@ -1,16 +1,8 @@
-<div>
-    <h4>My Todo List </h4>
-    <button (click)="addTask()">Add task </button>
-    <input id="task" [(ngModel)]="newTask">
+<input placeholder="Enter task here" type="text" [(ngModel)]="task" required> 
+<button (click)="addNewTask()">Add task</button>
 
-    <div *ngFor="let task of AllTasks ;let index=index">
-    
-        <div>{{task}}</div>
-        <button (click)="deleteTask(index)">Delete</button>
-        <button (click)="updateTask(index)">Update</button>
-    </div>
-
-
-
-
+<div *ngFor="let task of todos">
+<div>{{task.task}}</div>
+<button (click)="deleteTask(task.id)">Delete</button>
+<button (click)="updateTask(task)">Update</button>
 </div>
