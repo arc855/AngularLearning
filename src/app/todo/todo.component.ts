@@ -10,7 +10,7 @@ import { Task } from '../task';
   styleUrls: ['./todo.component.css']
 })
 export class TodoComponent implements OnInit{
- task='';
+  todoTitle='';
  todos: Task[] = [];
 
  constructor(private todoService : TodoService){
@@ -28,10 +28,10 @@ export class TodoComponent implements OnInit{
  }
 
  addNewTask(){
-  if(this.task==null || this.task == ''){
+  if(this.todoTitle==null || this.todoTitle == ''){
   }else{
     let newtask={
-      task:this.task
+      todoTitle:this.todoTitle
     }
     this.todoService.createTask(newtask).subscribe(response => {
       console.log("response :", response)
@@ -43,11 +43,12 @@ export class TodoComponent implements OnInit{
  }
 
  updateTask(task:Task){
-  if(this.task==null || this.task == ''){
+  console.log("inside update task")
+  if(this.todoTitle==null || this.todoTitle == ''){
   }else{
     let edittask={
-      id:task.id,
-      task:this.task
+      todoId:task.todoId,
+      todoTitle:this.todoTitle
     }
     this.todoService.updateTask(edittask).subscribe(res => {
       this.getTaskList()
@@ -55,7 +56,7 @@ export class TodoComponent implements OnInit{
   }
  }
 
- deleteTask(id:Task['id']){
+ deleteTask(id:Task['todoId']){
   this.todoService.deleteTasks(id).subscribe(res => {
     this.getTaskList();
   })
