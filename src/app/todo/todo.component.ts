@@ -4,7 +4,6 @@ import {TodoService} from'../services/todo.service';
 import { Task } from '../model/task';
 import { LoginService } from '../services/login.service';
 import { Router } from '@angular/router';
-import { single } from 'rxjs';
 
 
 @Component({
@@ -19,8 +18,12 @@ export class TodoComponent implements OnInit{
   todoId: '',
   todoTitle: ''
  }
+ username :string ='';
 
  constructor(private todoService : TodoService , private auth:LoginService, private router: Router){
+  this.auth.currentUser.subscribe((user)=>{
+    console.log("Logined user data",user?.user_metadata['name'])
+  })
 
  }
 
@@ -78,3 +81,5 @@ export class TodoComponent implements OnInit{
 
 
 }
+
+
