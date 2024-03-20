@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import {TodoService} from'../todo.service';
-import { Task } from '../task';
+import {TodoService} from'../services/todo.service';
+import { Task } from '../model/task';
 
 
 @Component({
