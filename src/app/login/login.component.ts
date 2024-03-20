@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { LoginService } from '../services/login.service';
 
 @Component({
   selector: 'app-login',
@@ -8,22 +8,12 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent {
 
-  constructor(private router: Router){
+  constructor(private auth : LoginService){}
+
+  async handleAuth(){
+    const response = await this.auth.signInWithGitHub()
+    console.log("response :",response)
   }
-
-  username: String = 'admin';
-  password: any = 'admin';
-
-  login(){
-    console.log("inside login")
-
-    if(this.username == 'admin' && this.password == 'admin'){
-      this.router.navigate(["todo"]);
-     }else {
-       alert("Invalid credentials");
-     }
-  }
-
 
 
 }
