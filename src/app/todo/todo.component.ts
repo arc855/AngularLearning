@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import {TodoService} from'../services/todo.service';
 import { Task } from '../model/task';
+import { LoginService } from '../services/login.service';
+import { Router } from '@angular/router';
+import { single } from 'rxjs';
 
 
 @Component({
@@ -10,11 +13,20 @@ import { Task } from '../model/task';
   styleUrls: ['./todo.component.css']
 })
 export class TodoComponent implements OnInit{
-  todoTitle='';
+  todoTitle='atyoupui';
  todos: Task[] = [];
+ task: Task ={
+  todoId: '',
+  todoTitle: ''
+ }
 
- constructor(private todoService : TodoService){
+ constructor(private todoService : TodoService , private auth:LoginService, private router: Router){
 
+ }
+
+ signOut(){
+  this.auth.signOut()
+  this.router.navigate(['/login'])
  }
 
  ngOnInit(): void {
@@ -43,7 +55,7 @@ export class TodoComponent implements OnInit{
  }
 
  updateTask(task:Task){
-  console.log("inside update task")
+  console.log("inside update task" ,this.task.todoTitle)
   if(this.todoTitle==null || this.todoTitle == ''){
   }else{
     let edittask={
